@@ -1,14 +1,15 @@
 import { Fragment } from 'react';
 
 import Toolbar from './Components/Toolbar/toolbar.component';
+import Grid from './Components/Grid/grid.component';
 
-function App() {
+const App = () => {
   return (
     <Fragment>
       <Toolbar />
-      {/* Grid */}
+      <Grid />
     </Fragment>
   );
-}
+};
 
 export default App;

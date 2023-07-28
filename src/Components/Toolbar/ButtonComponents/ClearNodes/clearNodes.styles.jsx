@@ -1,25 +1,23 @@
 import { styled } from 'styled-components';
 
 export const BaseButton = styled.button`
-  margin: 25px;
+  margin: 25px 25px 0px 25px;
   min-width: 165px;
   width: auto;
   height: 50px;
   letter-spacing: 0.5px;
-  line-height: 50px;
-  padding: 0 35px 0 35px;
+  padding: 0 15px 0 15px;
   font-size: 15px;
   background-color: white;
-  color: seagreen;
-  border: 2px solid seagreen;
+  color: maroon;
+  border: 3px solid maroon;
   text-transform: uppercase;
   font-family: 'Audiowide', cursive;
   font-weight: bolder;
   cursor: pointer;
-  align-self: center;
 
   &:hover {
-    background-color: seagreen;
+    background-color: maroon;
     color: white;
   }
 `;
