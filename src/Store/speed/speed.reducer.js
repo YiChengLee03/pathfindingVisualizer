@@ -2,7 +2,7 @@ import { SPEED_ACTION_TYPES, ALGO_SPEED } from './speed.types';
 
 export const SPEED_INITIAL_STATE = {
   speed: ALGO_SPEED.MEDIUM,
-  isDropdownOpen: false,
+  isSpeedDropdownOpen: false,
 };
 
 export const speedReducer = (state = SPEED_INITIAL_STATE, action) => {
@@ -13,7 +13,7 @@ export const speedReducer = (state = SPEED_INITIAL_STATE, action) => {
         ...state,
         speed: payload,
       };
-    case SPEED_ACTION_TYPES.SET_IS_DROPDOWN_OPEN:
+    case SPEED_ACTION_TYPES.SET_IS_SPEED_DROPDOWN_OPEN:
       return {
         ...state,
         isSpeedDropdownOpen: payload,

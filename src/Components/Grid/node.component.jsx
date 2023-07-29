@@ -25,6 +25,9 @@ const NodeIcon = ({ children, nodeType, ...otherProps }) => {
 
 const Node = (props) => {
   const { row, col, nodeType, onMouseDown, onMouseEnter, onMouseUp } = props;
+  if (nodeType === 'Start' || nodeType === 'End') {
+    return <NodeIcon nodeType={nodeType} />;
+  }
 
   return (
     <NodeIcon

@@ -7,7 +7,7 @@ export const selectSpeed = createSelector(
   (speed) => speed.speed
 );
 
-export const selectIsDropdownOpen = createSelector(
+export const selectIsSpeedDropdownOpen = createSelector(
   [selectSpeedReducer],
-  (speed) => speed.isDropdownOpen
+  (speed) => speed.isSpeedDropdownOpen
 );

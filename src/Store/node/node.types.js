@@ -1,12 +1,12 @@
 export const NODE_ACTION_TYPES = {
-  SET_NODE_TYPE: 'nodes/SET_NODE_TYPE',
-  SET_IS_NODE_DROPDOWN_OPEN: 'nodes/SET_IS_NODE_DROPDOWN_OPEN',
+  SET_NODE_TYPE: 'node/SET_NODE_TYPE',
+  SET_IS_NODE_DROPDOWN_OPEN: 'node/SET_IS_NODE_DROPDOWN_OPEN',
 };
 
 export const NODE_TYPES = {
-  START: 'START',
-  END: 'END',
-  NORMAL: 'NORMAL',
-  WALL: 'WALL',
-  WEIGHTED: 'WEIGHTED',
+  START: 'Start',
+  END: 'End',
+  NORMAL: 'Normal',
+  WALL: 'Wall',
+  WEIGHTED: 'Weighted',
 };

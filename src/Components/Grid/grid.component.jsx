@@ -1,36 +1,33 @@
-import { useEffect, useState } from 'react';
-import { GridContainer } from './grid.styles';
-import { NODE_TYPES } from '../../Store/node/node.types';
-import { useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { selectGrid } from '../../Store/grid/grid.selector';
+import { setGrid } from '../../Store/grid/grid.action';
 import { selectNodeType } from '../../Store/node/node.selector';
 
 import Node from './node.component';
 
-const START_NODE_ROW = 10;
-const START_NODE_COL = 10;
-const END_NODE_ROW = 10;
-const END_NODE_COL = 40;
+import { GridContainer } from './grid.styles';
 
 const Grid = () => {
-  const [mouseIsPressed, setMouseIsPressed] = useState(false);
-  const [grid, setGrid] = useState([]);
+  const dispatch = useDispatch();
+
+  const grid = useSelector(selectGrid);
   const selectedNodeType = useSelector(selectNodeType);
 
-  useEffect(() => setGrid(initGrid), []);
+  const [isMousePressed, setIsMousePressed] = useState(false);
 
   const handleMouseDown = (row, col) => {
-    setMouseIsPressed(true);
-    setGrid(rerenderGrid(row, col));
+    setIsMousePressed(true);
+    return dispatch(setGrid(rerenderGrid(row, col)));
   };
 
   const handleMouseEnter = (row, col) => {
-    if (!mouseIsPressed) return;
-    setGrid(rerenderGrid(row, col));
+    if (!isMousePressed) return;
+    return dispatch(setGrid(rerenderGrid(row, col)));
   };
 
-  const handleMouseUp = () => {
-    setMouseIsPressed(false);
-  };
+  const handleMouseUp = () => setIsMousePressed(false);
 
   const rerenderGrid = (row, col) => {
     const newGrid = grid.slice();
@@ -64,34 +61,5 @@ const Grid = () => {
     </GridContainer>
   );
 };
+
 export default Grid;
-
-const initGrid = () => {
-  const grid = [];
-  for (let row = 0; row < 20; row++) {
-    const currRow = [];
-    for (let col = 0; col < 50; col++) {
-      currRow.push(createNode(row, col));
-    }
-    grid.push(currRow);
-  }
-  return grid;
-};
-
-const createNode = (row, col) => {
-  const nodeType =
-    row === START_NODE_ROW && col === START_NODE_COL
-      ? NODE_TYPES.START
-      : row === END_NODE_ROW && col === END_NODE_COL
-      ? NODE_TYPES.END
-      : NODE_TYPES.NORMAL;
-
-  return {
-    row,
-    col,
-    nodeType,
-    distance: Infinity,
-    isVisited: false,
-    previousNode: null,
-  };
-};
