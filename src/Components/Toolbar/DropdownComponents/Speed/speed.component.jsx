@@ -8,6 +8,7 @@ import {
   setSpeed,
   setIsSpeedDropdownOpen,
 } from '../../../../Store/speed/speed.action';
+import OutsideAlerter from '../OutsideAlerter/outside.component';
 
 import {
   SpeedContainer,
@@ -26,11 +27,8 @@ const Speed = () => {
   const speedDropdownOpen = useSelector(selectIsSpeedDropdownOpen);
   const speedList = Object.values(ALGO_SPEED);
 
-  const toggleDropdown = () => {
-    console.log(speedDropdownOpen);
-    console.log('toggled');
-    return dispatch(setIsSpeedDropdownOpen(!speedDropdownOpen));
-  };
+  const toggleDropdown = () =>
+    dispatch(setIsSpeedDropdownOpen(!speedDropdownOpen));
 
   const changeSpeed = (speed) => {
     toggleDropdown();
@@ -43,19 +41,21 @@ const Speed = () => {
   return (
     <SpeedContainer>
       <Header>Speed</Header>
-      {speedDropdownOpen && (
-        <Dropdown>
-          {speedList.map((speed, idx) => (
-            <Item key={idx} onClick={() => changeSpeed(speed)}>
-              {speed}
-            </Item>
-          ))}
-        </Dropdown>
-      )}
-      <DropdownMenu onClick={toggleDropdown}>
-        <Selection>{speed}</Selection>
-        <ArrowIcon />
-      </DropdownMenu>
+      <OutsideAlerter dropdown='Speed'>
+        <DropdownMenu onClick={toggleDropdown}>
+          <Selection>{speed}</Selection>
+          <ArrowIcon />
+        </DropdownMenu>
+        {speedDropdownOpen && (
+          <Dropdown>
+            {speedList.map((speed, idx) => (
+              <Item key={idx} onClick={() => changeSpeed(speed)}>
+                {speed}
+              </Item>
+            ))}
+          </Dropdown>
+        )}
+      </OutsideAlerter>
     </SpeedContainer>
   );
 };

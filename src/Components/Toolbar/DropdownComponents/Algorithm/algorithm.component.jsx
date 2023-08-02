@@ -19,6 +19,7 @@ import {
   Dropdown,
   Item,
 } from '../DropdownContainer/dropdownContainer.styles';
+import OutsideAlerter from '../OutsideAlerter/outside.component';
 
 const Algorithm = () => {
   const dispatch = useDispatch();
@@ -41,19 +42,21 @@ const Algorithm = () => {
   return (
     <AlgorithmContainer>
       <Header>Algorithm</Header>
-      <DropdownMenu onClick={toggleDropdown}>
-        <Selection>{algorithm}</Selection>
-        <ArrowIcon />
-      </DropdownMenu>
-      {algoDropdownOpen && (
-        <Dropdown>
-          {algoList.map((algo, idx) => (
-            <Item key={idx} onClick={() => changeAlgorithm(algo)}>
-              {algo}
-            </Item>
-          ))}
-        </Dropdown>
-      )}
+      <OutsideAlerter dropdown='Algorithm'>
+        <DropdownMenu onClick={toggleDropdown}>
+          <Selection>{algorithm}</Selection>
+          <ArrowIcon />
+        </DropdownMenu>
+        {algoDropdownOpen && (
+          <Dropdown>
+            {algoList.map((algo, idx) => (
+              <Item key={idx} onClick={() => changeAlgorithm(algo)}>
+                {algo}
+              </Item>
+            ))}
+          </Dropdown>
+        )}
+      </OutsideAlerter>
     </AlgorithmContainer>
   );
 };

@@ -1,40 +1,17 @@
-import { NODE_TYPES } from '../../Store/node/node.types';
+import './node.styles.scss';
 
-import {
-  BaseIcon,
-  StartIcon,
-  EndIcon,
-  WallIcon,
-  WeightedIcon,
-} from './node.styles';
+export const Node = (props) => {
+  const { row, col, nodeType, onMouseDown, onMouseEnter } = props;
 
-const getNode = (nodeType = NODE_TYPES.base) => {
-  return {
-    [NODE_TYPES.NORMAL]: BaseIcon,
-    [NODE_TYPES.START]: StartIcon,
-    [NODE_TYPES.END]: EndIcon,
-    [NODE_TYPES.WALL]: WallIcon,
-    [NODE_TYPES.WEIGHTED]: WeightedIcon,
-  }[nodeType];
-};
-
-const NodeIcon = ({ children, nodeType, ...otherProps }) => {
-  const CustomNode = getNode(nodeType);
-  return <CustomNode {...otherProps}>{children}</CustomNode>;
-};
-
-const Node = (props) => {
-  const { row, col, nodeType, onMouseDown, onMouseEnter, onMouseUp } = props;
-  if (nodeType === 'Start' || nodeType === 'End') {
-    return <NodeIcon nodeType={nodeType} />;
-  }
+  if (nodeType === 'Start' || nodeType === 'End')
+    return <tr id={`node-${row}-${col}`} className={`node ${nodeType}`} />;
 
   return (
-    <NodeIcon
-      nodeType={nodeType}
+    <tr
+      id={`node-${row}-${col}`}
+      className={`node ${nodeType}`}
       onMouseDown={() => onMouseDown(row, col)}
       onMouseEnter={() => onMouseEnter(row, col)}
-      onMouseUp={onMouseUp}
     />
   );
 };

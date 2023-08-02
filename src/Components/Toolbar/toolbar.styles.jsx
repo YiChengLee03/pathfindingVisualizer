@@ -5,13 +5,12 @@ export const ToolbarContainer = styled.div`
   display: flex;
   max-height: fit-content;
   margin-top: 10px;
-  margin-bottom: 25px;
 `;
 
 export const FeaturesContainer = styled.div`
-  padding-left: 70px;
   width: 100%;
   display: flex;
+  z-index: 1;
 `;
 
 export const Title = styled.h1`

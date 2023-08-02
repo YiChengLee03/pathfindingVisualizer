@@ -1,17 +1,13 @@
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import Node from './node.component';
 
 import { selectGrid } from '../../Store/grid/grid.selector';
-import { setGrid } from '../../Store/grid/grid.action';
 import { selectNodeType } from '../../Store/node/node.selector';
-
-import Node from './node.component';
 
 import { GridContainer } from './grid.styles';
 
 const Grid = () => {
-  const dispatch = useDispatch();
-
   const grid = useSelector(selectGrid);
   const selectedNodeType = useSelector(selectNodeType);
 
@@ -19,29 +15,25 @@ const Grid = () => {
 
   const handleMouseDown = (row, col) => {
     setIsMousePressed(true);
-    return dispatch(setGrid(rerenderGrid(row, col)));
+    rerenderNode(grid[row][col], selectedNodeType);
   };
 
   const handleMouseEnter = (row, col) => {
     if (!isMousePressed) return;
-    return dispatch(setGrid(rerenderGrid(row, col)));
+    rerenderNode(grid[row][col], selectedNodeType);
   };
 
   const handleMouseUp = () => setIsMousePressed(false);
 
-  const rerenderGrid = (row, col) => {
-    const newGrid = grid.slice();
-    const node = newGrid[row][col];
-    const newNode = {
-      ...node,
-      nodeType: selectedNodeType,
-    };
-    newGrid[row][col] = newNode;
-    return newGrid;
+  const rerenderNode = (node, nodeT) => {
+    document.getElementById(
+      `node-${node.row}-${node.col}`
+    ).className = `node ${nodeT}`;
+    node.nodeType = nodeT;
   };
 
   return (
-    <GridContainer>
+    <GridContainer onMouseUp={handleMouseUp}>
       {grid.map((row, idx) =>
         row.map((node, colID) => {
           const { row, col, nodeType } = node;
@@ -52,7 +44,6 @@ const Grid = () => {
               col={col}
               nodeType={nodeType}
               onMouseDown={(row, col) => handleMouseDown(row, col)}
-              onMouseUp={handleMouseUp}
               onMouseEnter={(row, col) => handleMouseEnter(row, col)}
             />
           );

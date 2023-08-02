@@ -32,7 +32,6 @@ export const Dropdown = styled.div`
   margin: auto;
   padding: 10px;
   padding-left: 0%;
-  background-color: cornsilk;
   background-color: white;
   top: 85px;
   border: 1px solid gray;
@@ -43,7 +42,7 @@ export const DropdownMenu = styled.button`
   font-family: 'Audiowide';
   align-items: center;
   column-gap: 10px;
-  background-color: transparent;
+  background-color: white;
   border: none;
   cursor: pointer;
   max-height: 30px;

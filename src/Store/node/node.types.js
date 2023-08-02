@@ -9,4 +9,8 @@ export const NODE_TYPES = {
   NORMAL: 'Normal',
   WALL: 'Wall',
   WEIGHTED: 'Weighted',
+  VISITED: 'Visited',
+  SHORTEST: 'Shortest',
+  VISITED_WEIGHTED: 'Visited_Weighted',
+  SHORTEST_WEIGHTED: 'Shortest_Weighted',
 };

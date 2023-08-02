@@ -1,7 +1,7 @@
 import { SPEED_ACTION_TYPES, ALGO_SPEED } from './speed.types';
 
 export const SPEED_INITIAL_STATE = {
-  speed: ALGO_SPEED.MEDIUM,
+  speed: ALGO_SPEED.FAST,
   isSpeedDropdownOpen: false,
 };
 

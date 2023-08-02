@@ -2,22 +2,26 @@ import { NODE_TYPES } from '../node/node.types';
 
 export const GRID_ACTION_TYPES = {
   SET_GRID: 'grid/SET_GRID',
-  TOGGLE_RESET_GRID: 'grid/TOGGLE_RESET_GRID',
 };
 
-const START_NODE_ROW = 10;
-const START_NODE_COL = 10;
-const END_NODE_ROW = 10;
-const END_NODE_COL = 40;
+export const START_NODE = {
+  row: 10,
+  col: 10,
+};
+
+export const END_NODE = {
+  row: 10,
+  col: 40,
+};
 
 export const initGrid = () => {
   const grid = [];
 
   const createNode = (row, col) => {
     const nodeType =
-      row === START_NODE_ROW && col === START_NODE_COL
+      row === START_NODE.row && col === START_NODE.col
         ? NODE_TYPES.START
-        : row === END_NODE_ROW && col === END_NODE_COL
+        : row === END_NODE.row && col === END_NODE.col
         ? NODE_TYPES.END
         : NODE_TYPES.NORMAL;
 
@@ -25,15 +29,18 @@ export const initGrid = () => {
       row,
       col,
       nodeType,
-      distance: Infinity,
       isVisited: false,
       previousNode: null,
+      distance: Infinity,
+      g_cost: 0,
+      h_cost: 0,
+      f_cost: 0,
     };
   };
 
-  for (let row = 0; row < 20; row++) {
+  for (let row = 0; row < 22; row++) {
     const currRow = [];
-    for (let col = 0; col < 50; col++) {
+    for (let col = 0; col < 56; col++) {
       currRow.push(createNode(row, col));
     }
     grid.push(currRow);

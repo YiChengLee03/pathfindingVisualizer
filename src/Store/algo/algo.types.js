@@ -4,8 +4,9 @@ export const ALGO_ACTION_TYPES = {
 };
 
 export const ALGO_TYPES = {
+  ASTAR: 'A* Search',
   BFS: 'Breadth First Search',
   DFS: 'Depth First Search',
-  ASTAR: 'A* Algorithm',
   DIJKSTRAS: "Dijkstra's Algorithm",
+  GREEDY: 'Greedy Best First Search',
 };

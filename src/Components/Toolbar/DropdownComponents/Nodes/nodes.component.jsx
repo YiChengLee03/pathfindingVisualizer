@@ -8,6 +8,7 @@ import {
   selectIsNodeDropdownOpen,
 } from '../../../../Store/node/node.selector';
 import { NODE_TYPES } from '../../../../Store/node/node.types';
+import OutsideAlerter from '../OutsideAlerter/outside.component';
 
 import {
   NodesContainer,
@@ -24,7 +25,11 @@ const Nodes = () => {
 
   const nodeType = useSelector(selectNodeType);
   const nodeDropdownOpen = useSelector(selectIsNodeDropdownOpen);
-  const nodeTypeList = Object.values(NODE_TYPES);
+  const nodeTypeList = [
+    NODE_TYPES.NORMAL,
+    NODE_TYPES.WALL,
+    NODE_TYPES.WEIGHTED,
+  ];
 
   const toggleDropdown = () =>
     dispatch(setIsNodeDropdownOpen(!nodeDropdownOpen));
@@ -40,22 +45,23 @@ const Nodes = () => {
   return (
     <NodesContainer>
       <Header>Nodes</Header>
-      {nodeDropdownOpen && (
-        <Dropdown>
-          {nodeTypeList.map((nodeType, idx) => {
-            if (nodeType === 'Start' || nodeType === 'End') return;
-            return (
-              <Item key={idx} onClick={() => changeNodeType(nodeType)}>
-                {nodeType}
-              </Item>
-            );
-          })}
-        </Dropdown>
-      )}
-      <DropdownMenu onClick={toggleDropdown}>
-        <Selection>{nodeType}</Selection>
-        <ArrowIcon />
-      </DropdownMenu>
+      <OutsideAlerter dropdown='Nodes'>
+        <DropdownMenu onClick={toggleDropdown}>
+          <Selection>{nodeType}</Selection>
+          <ArrowIcon />
+        </DropdownMenu>
+        {nodeDropdownOpen && (
+          <Dropdown>
+            {nodeTypeList.map((nodeType, idx) => {
+              return (
+                <Item key={idx} onClick={() => changeNodeType(nodeType)}>
+                  {nodeType}
+                </Item>
+              );
+            })}
+          </Dropdown>
+        )}
+      </OutsideAlerter>
     </NodesContainer>
   );
 };
