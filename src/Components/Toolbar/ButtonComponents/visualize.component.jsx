@@ -9,11 +9,12 @@ import { ALGO_TYPES } from '../../../Store/algo/algo.types';
 import { selectSpeed } from '../../../Store/speed/speed.selector';
 import { NODE_TYPES } from '../../../Store/node/node.types';
 
-import { dijkstra } from '../../../Algorithm/dijkstras';
+import { aStar } from '../../../Algorithm/aStar';
+import { aStarWeighted } from '../../../Algorithm/weightedAstar';
 import { bfs } from '../../../Algorithm/bfs';
 import { dfs } from '../../../Algorithm/dfs';
+import { dijkstra } from '../../../Algorithm/dijkstras';
 import { greedy } from '../../../Algorithm/greedy';
-import { aStar } from '../../../Algorithm/aStar';
 
 import { VisualizeButton } from './button.styles';
 
@@ -91,36 +92,37 @@ const Visualize = () => {
       case ALGO_TYPES.ASTAR:
         visitedNodesInOrder = aStar(grid, startNode, endNode);
         nodesInPathOrder = getNodesInPathOrder(endNode);
-        animateAlgorithm(visitedNodesInOrder, nodesInPathOrder);
         break;
 
       case ALGO_TYPES.BFS:
         visitedNodesInOrder = bfs(grid, startNode, endNode);
         nodesInPathOrder = getNodesInPathOrder(endNode);
-        animateAlgorithm(visitedNodesInOrder, nodesInPathOrder);
         break;
 
       case ALGO_TYPES.DFS:
         visitedNodesInOrder = dfs(grid, startNode, endNode);
         nodesInPathOrder = getNodesInPathOrder(endNode);
-        animateAlgorithm(visitedNodesInOrder, nodesInPathOrder);
         break;
 
       case ALGO_TYPES.DIJKSTRAS:
         visitedNodesInOrder = dijkstra(grid, startNode, endNode);
         nodesInPathOrder = getNodesInPathOrder(endNode);
-        animateAlgorithm(visitedNodesInOrder, nodesInPathOrder);
         break;
 
       case ALGO_TYPES.GREEDY:
         visitedNodesInOrder = greedy(grid, startNode, endNode);
         nodesInPathOrder = getNodesInPathOrder(endNode);
-        animateAlgorithm(visitedNodesInOrder, nodesInPathOrder);
+        break;
+
+      case ALGO_TYPES.ASTAR_WEIGHTED:
+        visitedNodesInOrder = aStarWeighted(grid, startNode, endNode);
+        nodesInPathOrder = getNodesInPathOrder(endNode);
         break;
 
       default:
         return;
     }
+    animateAlgorithm(visitedNodesInOrder, nodesInPathOrder);
   };
 
   const getNodesInPathOrder = (finishNode) => {

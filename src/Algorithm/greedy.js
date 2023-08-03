@@ -22,6 +22,7 @@ export const greedy = (grid, startNode, endNode) => {
       }
     }
   }
+  return visitedNodesInOrder;
 };
 
 const getUnvisitedNeighbours = (node, grid) => {

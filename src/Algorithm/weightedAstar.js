@@ -1,6 +1,6 @@
 import { NODE_TYPES } from '../Store/node/node.types';
 
-export const aStar = (grid, startNode, endNode) => {
+export const aStarWeighted = (grid, startNode, endNode) => {
   const visitedNodesInOrder = [];
   startNode.isVisited = true;
   const unvisitedNeighbours = getUnvisitedNeighbours(
@@ -44,7 +44,7 @@ const getUnvisitedNeighbours = (node, grid, startNode, endNode) => {
   for (const neighbour of filteredNeighbours) {
     neighbour.g_cost = getG_Cost(neighbour, grid, endNode);
     neighbour.h_cost = getH_Cost(neighbour, grid, startNode);
-    neighbour.f_cost = neighbour.g_cost + neighbour.h_cost;
+    neighbour.f_cost = neighbour.g_cost + 0.3 * neighbour.h_cost;
     neighbour.previousNode = node;
   }
   return filteredNeighbours;

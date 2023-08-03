@@ -20,6 +20,7 @@ export const bfs = (grid, startNode, endNode) => {
       }
     }
   }
+  return visitedNodesInOrder;
 };
 
 const getUnvisitedNeighbours = (node, grid) => {
@@ -37,3 +38,5 @@ const getUnvisitedNeighbours = (node, grid) => {
   }
   return filteredNeighbours;
 };
+
+// add algo description
