@@ -4,7 +4,7 @@ export const DescriptionContainer = styled.div`
   font-size: 20px;
   display: block;
   max-height: fit-content;
-  margin: 10px auto 30px auto;
+  margin: 10px auto 50px auto;
   text-align: center;
   font-family: 'Roboto', sans-serif;
 `;
