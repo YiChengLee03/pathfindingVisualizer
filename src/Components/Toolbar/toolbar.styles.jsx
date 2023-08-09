@@ -4,8 +4,7 @@ export const ToolbarContainer = styled.div`
   font-size: large;
   display: flex;
   max-height: fit-content;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 10px;
 `;
 
 export const FeaturesContainer = styled.div`
